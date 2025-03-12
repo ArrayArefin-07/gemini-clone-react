@@ -4,7 +4,7 @@ import {
   GoogleGenerativeAI,
   HarmCategory,
   HarmBlockThreshold,
-} from "@google/generative-ai"
+} from "@google/generative-ai";
 
 const MODEL_NAME = "gemini-1.5-flash";
 const API_KEY = "AIzaSyDPb2EEi_ezkpcnLp_0NxHXM99IkfYWDUc";
@@ -23,7 +23,7 @@ const API_KEY = "AIzaSyDPb2EEi_ezkpcnLp_0NxHXM99IkfYWDUc";
 
 async function runChat(prompt) {
   const genAI = new GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: MODEL_NAME});
+  const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
   const generationConfig = {
     temperature: 0.9,
@@ -55,13 +55,13 @@ async function runChat(prompt) {
   const chat = model.startChat({
     generationConfig,
     safetySettings,
-    history: [
-    ],
+    history: [],
   });
 
   const result = await chat.sendMessage(prompt);
   const response = result.response;
   console.log(response.text());
+  return response.text();
 
   // const chatSession = model.startChat({
   //   generationConfig,
@@ -69,7 +69,7 @@ async function runChat(prompt) {
   // });
 
   //const result = await chatSession.sendMessage(prompt);
-  console.log(result.response.text());
+  //console.log(result.response.text());
 }
 
 // runChat();
